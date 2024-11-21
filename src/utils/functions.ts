@@ -14,5 +14,7 @@ export const addItemToShoppingCart = (
 };
 
 export const calcTotal = (cartItems: IProduct[]) => {
-  return cartItems.reduce((total, item) => total + item.price * item.qty, 0);
+  return cartItems
+    .reduce((total, item) => total + item.price * item.qty, 0)
+    .toFixed(2);
 };
