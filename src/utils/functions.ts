@@ -12,3 +12,10 @@ export const addItemToShoppingCart = (
   }
   return [...cartItems, { ...product, qty: 1 }];
 };
+
+export const calcTotal = (cartItems: IProduct[]) => {
+  const total = cartItems
+    .map((item) => item.price * item.qty)
+    .reduce((prev, curr) => (prev += curr));
+  // console.log(total);
+};

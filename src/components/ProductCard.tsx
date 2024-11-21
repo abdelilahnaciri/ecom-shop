@@ -1,6 +1,5 @@
-import React, { useState } from "react";
 import Button from "./ui/Button";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setCartItems } from "../app/features/cart/cartSlice";
 import { IProduct } from "../interface";
 import { NavLink } from "react-router-dom";
@@ -13,7 +12,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { id, title, thumbnail, price } = product;
 
   const dispatch = useDispatch();
-  // const { cartItems } = useSelector((state: RootState) => state.cart);
 
   // ** Handlers:
   const onAddToCart = () => {
