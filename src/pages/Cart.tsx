@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import Button from "../components/ui/Button";
 import { IProduct } from "../interface";
+import { calcTotal } from "../utils/functions";
 
 const CartPage = () => {
   const { cartItems } = useSelector((state: RootState) => state.cart);
@@ -62,6 +63,7 @@ const CartPage = () => {
           ></path>
         </svg>
         Checkout Now
+        <span className="ml-1">${calcTotal(cartItems)}</span>
       </Button>
     </div>
   );
