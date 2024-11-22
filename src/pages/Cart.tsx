@@ -1,11 +1,21 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import Button from "../components/ui/Button";
 import { IProduct } from "../interface";
 import { calcTotal } from "../utils/functions";
+import { setRemoveCartItemAction } from "../app/features/cart/cartSlice";
 
 const CartPage = () => {
   const { cartItems } = useSelector((state: RootState) => state.cart);
+  const dispatch = useDispatch();
+
+  // ** Handlers:
+  const onRemove = (itemId: number) => {
+    console.log(itemId);
+    const filtered: IProduct[] = cartItems.filter((item) => item.id !== itemId);
+    console.log(...filtered);
+    dispatch(setRemoveCartItemAction(filtered));
+  };
 
   return (
     <div>
@@ -41,9 +51,12 @@ const CartPage = () => {
                 </span>
               </p>
             </div>
-            <p className="font-bold text-slate-900 ml-3">
+            <p className="font-bold text-slate-900 mx-1">
               Total: ${price * qty}
             </p>
+            <Button variant={"danger"} onClick={() => onRemove(id)}>
+              Remove
+            </Button>
           </div>
         </div>
       ))}
